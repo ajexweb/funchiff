@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ref, get, push, set, serverTimestamp } from 'firebase/database';
-import { db } from './firebase.js';
+import { db } from './firebase.jsx';
 import { uploadPaymentScreenshot } from './supabase.js'; // Supabase Image Uploader
 import { useAuth } from './AuthContext.jsx';
 import toast from 'react-hot-toast';
