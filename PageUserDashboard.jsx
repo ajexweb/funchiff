@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Zap, PackageOpen, AlertCircle } from 'lucide-react';
 import { ref, onValue } from 'firebase/database';
-import { db } from './firebase.js'; // Flat Structure
+import { db } from './firebase.jsx'; // Flat Structure
 import { useAuth } from './AuthContext.jsx';
 import ComponentHackCard from './ComponentHackCard.jsx';
 

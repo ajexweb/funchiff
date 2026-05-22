@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ref, query, orderByChild, equalTo, onValue } from 'firebase/database';
-import { db } from './firebase.js';
+import { db } from './firebase.jsx';
 import { useAuth } from './AuthContext.jsx';
 import { Link } from 'react-router-dom';
 import { ShoppingBag, Clock, CheckCircle2, XCircle, Download, Key, ArrowRight } from 'lucide-react';

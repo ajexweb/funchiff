@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ref, onValue, update } from 'firebase/database';
-import { db } from './firebase.js';
+import { db } from './firebase.jsx';
 import toast from 'react-hot-toast';
 import { CreditCard, CheckCircle, XCircle, ExternalLink, Image as ImageIcon } from 'lucide-react';
 

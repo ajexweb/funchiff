@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ref, onValue } from 'firebase/database';
-import { db } from './firebase.js';
+import { db } from './firebase.jsx';
 import { Users, Search, Award, TrendingUp, ShieldAlert, Mail } from 'lucide-react';
 
 const PageAdminUsers = () => {

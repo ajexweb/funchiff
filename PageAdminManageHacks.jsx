@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ref, push, set, onValue, remove } from 'firebase/database';
-import { db } from './firebase.js';
+import { db } from './firebase.jsx';
 import toast from 'react-hot-toast';
 import { Settings, Plus, Trash2, Image as ImageIcon, Crosshair, Package } from 'lucide-react';
 
