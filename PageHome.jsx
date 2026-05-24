@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Crosshair, Zap, Shield, ChevronRight } from 'lucide-react';
+import { Crosshair, Zap, Shield, ChevronRight, LayoutDashboard } from 'lucide-react';
 import { useAuth } from './AuthContext.jsx';
 
 const PageHome = () => {
