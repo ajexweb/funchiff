@@ -1,81 +1,110 @@
+// ComponentHackCard.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle, Zap, Shield, Crosshair } from 'lucide-react';
+import { CheckCircle, Zap, Shield, Crosshair, Percent, Award } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const ComponentHackCard = ({ hack }) => {
   const navigate = useNavigate();
   
-  // 🛒 Buy Button Handler (यूज़र को पेमेंट पेज पर ले जाएगा)
+  // 🛒 Buy Button Handler (User ko dynamic detail and payment screen par bhejege)
   const handleBuyClick = () => {
-    navigate(`/user/buy/${hack.id}`);
+    navigate(`/user/buy/${hack.id}`); //
   };
   
+  // 📸 Advanced Flipkart Media Fallback Selector Engine
+  const targetCoverImage = hack.images && hack.images.length > 0 
+    ? hack.images[0] 
+    : (hack.imageUrl || "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070");
+
+  // 📊 Dynamic Pricing and Discount Matrix Engine
+  const coreMRP = Number(hack.originalPrice || hack.price || 499);
+  const livePrice = Number(hack.sellingPrice || hack.price || 149);
+  const standardDiscountRate = Math.round(((coreMRP - livePrice) / coreMRP) * 100);
+  const displayDiscountBadge = standardDiscountRate > 0;
+
   return (
     <motion.div
-      // 🚀 Advanced Framer Motion Animation on Mount & Hover
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      whileHover={{ y: -8, scale: 1.02 }}
-      transition={{ duration: 0.3, type: 'spring', stiffness: 200 }}
-      className="relative flex flex-col bg-[#001233] rounded-2xl border border-white/10 overflow-hidden shadow-glass group"
+      // 🚀 Advanced Motion Mechanics on Layout Mount & Mouse Hover
+      initial={{ opacity: 0, scale: 0.95 }} //
+      animate={{ opacity: 1, scale: 1 }} //
+      whileHover={{ y: -8, scale: 1.02 }} //
+      transition={{ duration: 0.3, type: 'spring', stiffness: 200 }} //
+      className="relative flex flex-col bg-[#001233] rounded-2xl border border-white/10 overflow-hidden shadow-glass group select-none h-full" //
     >
-      {/* 🔴 Glowing Top Border Effect */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-pureWhite to-blue-600 opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+      {/* 🔴 Premium Linear Glowing Top Border Effect */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-pureWhite to-blue-600 opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div> {/* */}
     
-    { /* 🖼️ Cover Image */ }
-    <div className="relative h-48 w-full bg-navy-900 overflow-hidden border-b border-white/5">
+      {/* 🖼️ Cover Image Viewport Layer */}
+      <div className="relative h-48 w-full bg-navy-900 overflow-hidden border-b border-white/5"> {/* */}
         <img 
-          src={hack.imageUrl || "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop"} 
-          alt={hack.title} 
-          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110"
+          src={targetCoverImage} 
+          alt={hack.title} //
+          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110" //
         />
-        {/* Status Badge */}
-        <div className="absolute top-3 right-3 bg-green-500/20 border border-green-500/50 text-green-400 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 backdrop-blur-sm">
-          <Shield size={12} /> Safe 100%
+        
+        {/* Dynamic Trust Factor badges */}
+        <div className="absolute top-3 right-3 flex flex-col items-end gap-1.5">
+          <span className="bg-green-500/20 border border-green-500/50 text-green-400 text-[10px] font-black uppercase px-2.5 py-1 rounded-full flex items-center gap-1 backdrop-blur-md shadow-md">
+            <Shield size={10} /> SECURE 100% {/* */}
+          </span>
+          {displayDiscountBadge && (
+            <span className="bg-blue-600 text-white text-[10px] font-black uppercase px-2 py-0.5 rounded shadow-lg flex items-center font-mono">
+              -{standardDiscountRate}%
+            </span>
+          )}
         </div>
       </div>
     
-    { /* 📝 Card Content */ }
-    <div className="p-6 flex flex-col flex-grow">
+      {/* 📝 Card Core Content Body */}
+      <div className="p-5 flex flex-col flex-grow justify-between space-y-4"> {/* */}
         
-        {/* Title & Price Header */}
-        <div className="flex justify-between items-start mb-4">
-          <div>
-            <h3 className="text-xl font-bold text-pureWhite flex items-center gap-2">
-              <Crosshair size={20} className="text-blue-400" />
-              {hack.title}
+        {/* Title & Complex Price Matrix Header Layout */}
+        <div className="space-y-2">
+          <div className="flex justify-between items-start gap-2">
+            <h3 className="text-lg font-black text-pureWhite flex items-center gap-2 uppercase tracking-wide truncate"> {/* */}
+              <Crosshair size={18} className="text-blue-400 flex-shrink-0" /> {/* */}
+              {hack.title} {/* */}
             </h3>
-            <p className="text-sm text-gray-400 mt-1 line-clamp-2">
-              {hack.description}
-            </p>
           </div>
-          <div className="bg-pureWhite/10 border border-pureWhite/20 px-3 py-1.5 rounded-lg text-pureWhite font-black text-lg">
-            ₹{hack.price}
+          
+          <p className="text-xs text-gray-400 line-clamp-2 leading-relaxed font-medium"> {/* */}
+            {hack.description} {/* */}
+          </p>
+
+          {/* Flipkart Embedded Pricing Scheme Row */}
+          <div className="bg-[#0A1428]/60 p-2 rounded-xl border border-white/5 flex items-baseline justify-between px-3">
+            <span className="text-[10px] font-bold text-gray-500 uppercase">Premium Value</span>
+            <div className="flex items-center gap-2">
+              {displayDiscountBadge && (
+                <span className="text-gray-500 line-through text-xs font-mono font-bold">₹{coreMRP}</span>
+              )}
+              <span className="text-emerald-400 font-black text-xl font-mono">₹{livePrice}</span> {/* */}
+            </div>
           </div>
         </div>
 
-        {/* ⚙️ Features List */}
-        <div className="space-y-2 mb-6 flex-grow">
-          {hack.features && hack.features.map((feature, index) => (
-            <div key={index} className="flex items-center gap-2 text-sm text-gray-300">
-              <CheckCircle size={16} className="text-blue-500" />
-              <span>{feature}</span>
+        {/* ⚙️ Core Deliverables Feature Grid Items */}
+        <div className="space-y-1.5 flex-grow"> {/* */}
+          {hack.features && hack.features.slice(0, 3).map((feature, index) => ( // Show safe layout constraints up to 3 parameters
+            <div key={index} className="flex items-center gap-2 text-xs text-gray-300 font-medium"> {/* */}
+              <CheckCircle size={14} className="text-blue-500 flex-shrink-0" /> {/* */}
+              <span className="truncate">{feature}</span> {/* */}
             </div>
           ))}
         </div>
 
-        {/* 🛒 Action Button */}
+        {/* 🛒 Operational Action Click Gateway */}
         <button 
-          onClick={handleBuyClick}
-          className="w-full mt-auto relative overflow-hidden bg-pureWhite text-[#0A1428] font-black text-lg py-3 rounded-xl transition-all duration-300 hover:bg-gray-200 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] active:scale-95 flex items-center justify-center gap-2"
+          onClick={handleBuyClick} //
+          className="w-full mt-auto relative overflow-hidden bg-white text-[#0A1428] font-black text-sm py-3 rounded-xl transition-all duration-300 hover:bg-gray-100 hover:shadow-[0_0_25px_rgba(255,255,255,0.2)] active:scale-95 flex items-center justify-center gap-2 uppercase tracking-wider" //
         >
-          <Zap size={20} />
-          BUY NOW
+          <Zap size={16} className="fill-current" /> {/* */}
+          GET VIP TERMINAL ACCESS
         </button>
 
-      </div> <
-    /motion.div>
+      </div> 
+    </motion.div>
   );
 };
 
