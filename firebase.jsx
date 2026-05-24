@@ -1,9 +1,16 @@
-// firebase.js
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
-// Vite में .env वेरिएबल्स को import.meta.env से एक्सेस किया जाता है
+// DEBUG: चेक करो कि Vercel को कीज़ मिल रही हैं या नहीं
+const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
+
+if (!apiKey) {
+  console.error("❌ CRITICAL ERROR: VITE_FIREBASE_API_KEY is missing! Vercel environment variables not loaded.");
+} else {
+  console.log("✅ API Key found, initializing Firebase...");
+}
+
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -15,19 +22,15 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
-// Initialize Firebase with Error Handling
-let app;
-let auth;
-let db;
+let auth, db;
 
 try {
-  app = initializeApp(firebaseConfig);
+  const app = initializeApp(firebaseConfig);
   auth = getAuth(app);
   db = getDatabase(app);
-  console.log("🔥 Firebase Connection: SUCCESS (Funchi FF Server Active)");
+  console.log("🔥 Firebase Connection: SUCCESS");
 } catch (error) {
-  console.error("❌ Firebase Connection Error: ", error.message);
+  console.error("❌ Firebase Initialization Error: ", error);
 }
 
-// Export the instances to use them in our React Components
 export { auth, db };
